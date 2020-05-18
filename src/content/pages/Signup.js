@@ -10,6 +10,7 @@ const Signup = props => {
   let [message, setMessage] = useState('')
   let [password, setPassword] = useState('')
   let [profileUrl, setProfileUrl] = useState('')
+  let [backgroundUrl, setBackgroundUrl] = useState('')
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -24,7 +25,8 @@ const Signup = props => {
         password,
         firstname,
         lastname,
-        pic: profileUrl
+        pic: profileUrl,
+        background: backgroundUrl
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -79,6 +81,14 @@ const Signup = props => {
         <div>
           <label>Profile Pic URL:</label>
           <input type="url" name="profileUrl" onChange={e => setProfileUrl(e.target.value)} />
+        </div>
+        <div>
+          <label>Profile Pic URL:</label>
+          <input type="url" name="profileUrl" onChange={e => setProfileUrl(e.target.value)} />
+        </div>
+        <div>
+          <label>Background Image URL:</label>
+          <input type="url" name="backgroundUrl" onChange={e => setBackgroundUrl(e.target.value)} />
         </div>
         <button type="submit">Sign Me Up!</button>
       </form>
