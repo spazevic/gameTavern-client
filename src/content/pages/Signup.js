@@ -1,7 +1,6 @@
 // Packages
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Button } from 'elemental' 
 
 const Signup = props => {
   // Declare and initialize state variables
@@ -63,7 +62,6 @@ const Signup = props => {
       <h2>Signup</h2>
       <span className="red">{message}</span>
       <form onSubmit={handleSubmit}>
-        <div className="signy">
         <div>
           <label>First Name:</label>
           <input name="firstname" placeholder="Your first name" onChange={e => setFirstname(e.target.value)} />
@@ -85,10 +83,12 @@ const Signup = props => {
           <input type="url" name="profileUrl" onChange={e => setProfileUrl(e.target.value)} />
         </div>
         <div>
+          <label>Profile Pic URL:</label>
+          <input type="url" name="profileUrl" onChange={e => setProfileUrl(e.target.value)} />
+        </div>
+        <div>
           <label>Background Image URL:</label>
           <input type="url" name="backgroundUrl" onChange={e => setBackgroundUrl(e.target.value)} />
-        </div>
-
         </div>
         <button type="submit">Sign Me Up!</button>
       </form>
