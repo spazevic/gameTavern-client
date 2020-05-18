@@ -3,6 +3,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 
 // Custom componentd
+import FreeGames from './pages/FreeGames'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
@@ -12,6 +13,7 @@ const Content = props => {
   return (
     <div className="container">
       <Route exact path="/" component={Home} />
+      <Route exact path="/freeGames" component={FreeGames} />
       <Route path="/login" render={
         () => <Login user={props.user} updateToken={props.updateToken} />
       } />

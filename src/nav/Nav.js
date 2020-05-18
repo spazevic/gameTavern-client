@@ -12,6 +12,9 @@ const Nav = props => {
   let links = (
     <span>
       <li>
+        <Link to="/freeGames">Free Games</Link>
+      </li>
+      <li>
         <Link to="/login">Login</Link>
       </li>
       <li>

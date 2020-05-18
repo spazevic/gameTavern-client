@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <footer>
-      Made by Adam Honore in 2020
+      Made by Adam Honore, Gared Barney, and Stefan Pazevic in 2020
     </footer>
   )
 }
