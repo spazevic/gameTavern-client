@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.9.14",
     "apicalypse": "^0.1.6",
     "axios": "^0.19.2",
     "jwt-decode": "^2.2.0",
