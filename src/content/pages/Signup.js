@@ -1,8 +1,8 @@
 // Packages
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Button, withStyles } from '@material-ui/core'
 import ExpansionPanel from '../components/ExpansionPanel'
+import SubmitButton from '../components/SubmitButton'
 
 const Signup = props => {
   let panels = [{ title: (<h3>Gamer Profile</h3>), content: (
@@ -134,21 +134,21 @@ const Signup = props => {
     return <Redirect to="/profile" />
   }
 
-  const StyledButton = withStyles({
-    root: {
-      background: 'linear-gradient(45deg, #CE3B5B 30%, #CF5E23 90%)',
-      borderRadius: 3,
-      border: 0,
-      color: 'white',
-      height: 48,
-      padding: '0 30px',
-      boxShadow: '0 0px 5px black',
-      margin: '10px'
-    },
-    label: {
-      textTransform: 'capitalize',
-    },
-  })(Button);
+  // const SubmitButton = withStyles({
+  //   root: {
+  //     background: 'linear-gradient(45deg, #CE3B5B 30%, #CF5E23 90%)',
+  //     borderRadius: 3,
+  //     border: 0,
+  //     color: 'white',
+  //     height: 48,
+  //     padding: '0 30px',
+  //     boxShadow: '0 0px 5px black',
+  //     margin: '10px'
+  //   },
+  //   label: {
+  //     textTransform: 'capitalize',
+  //   },
+  // })(Button);
 
 
 
@@ -160,8 +160,8 @@ const Signup = props => {
         <div className="signy">
         <h2>Sign Up</h2>
         <ExpansionPanel panels={panels} />
-          
-          <StyledButton type="submit">Sign Me Up!</StyledButton>
+        
+          <SubmitButton />
         </div>
       </form>
     </div>

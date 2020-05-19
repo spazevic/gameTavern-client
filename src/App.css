@@ -3,7 +3,8 @@
 }
 
 .App-header {
-  background-color: lightslategray;
+  background: url('images/hitech.jpg');
+  background-size: 50%;
   min-height: 20vh;
   display: flex;
   flex-direction: column;
@@ -11,6 +12,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin: -50px 0 0 0;
 }
 
 main {
@@ -55,7 +57,7 @@ nav a:hover {
 }
 
 .signy {
-  background-color: rgb(65, 65, 65);
+  background-color: #282c34;
   color: white;
   padding: 10px;
   position: relative;
@@ -96,9 +98,7 @@ nav a:hover {
   border: 2px solid royalblue;
 }
 
-.signy {
-  
-}
+
 
 
 
