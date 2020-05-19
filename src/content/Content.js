@@ -7,6 +7,7 @@ import FreeGames from './pages/FreeGames'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
+import Games from './pages/Games'
 import Signup from './pages/Signup'
 
 const Content = props => {
@@ -14,6 +15,7 @@ const Content = props => {
     <div className="container">
       <Route exact path="/" component={Home} />
       <Route exact path="/freeGames" component={FreeGames} />
+      <Route exact path="/games" component={Games} />
       <Route path="/login" render={
         () => <Login user={props.user} updateToken={props.updateToken} />
       } />
