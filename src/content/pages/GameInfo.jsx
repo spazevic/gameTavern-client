@@ -1,10 +1,13 @@
 import React from 'react'
 import Games from './Games'
-const GamesInfo = props => {
+
+const GameInfo = props => {
+
+
   return (
     <div>
-      GamesInfo
+      GameInfo stub
     </div>
   )
 }
-export default GamesInfo
+export default GameInfo

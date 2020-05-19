@@ -12,12 +12,15 @@ import GameInfo from './pages/GameInfo'
 import Signup from './pages/Signup'
 
 const Content = props => {
+  console.log(props.game)
   return (
     <div className="container">
       <Route exact path="/" component={Home} />
       <Route exact path="/freeGames" component={FreeGames} />
       <Route exact path="/games" component={Games} />
-      <Route exact path="/gameInfo" component={GameInfo} />
+      <Route path ='/gameinfo' render={() => 
+          <GameInfo />
+        }/>
       <Route path="/login" render={
         () => <Login user={props.user} updateToken={props.updateToken} />
       } />
