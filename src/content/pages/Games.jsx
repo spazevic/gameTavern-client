@@ -5,23 +5,34 @@ const Games = props => {
 	useEffect(() => {
 		// callApi()
 	}, [])
-	let [gamesData, setGamesData] = useState('')
+	let [gamesData, setGamesData] = useState([])
 	let [name, setName] = useState('')
 
 
 	const callApi = e => {
 		e.preventDefault()
-		fetch('https://api.rawg.io/api/games?search=' + name)
+		fetch('https://api.rawg.io/api/games?search=' + name + '&page_size=10')
 		.then(response => response.json())
 		.then(data => {
-			console.log(data.results[0])
-			setGamesData(data.results[0].id)
+
+			for (let i = 0; i < 10; i++) {
+				gamesData.push(data.results[i])
+			}
 			console.log(gamesData)
+			console.log(gamesData[0].name)
 		})
 		.catch(err => {
 			console.log(err)
 		})
-  }
+  	}
+
+  	let gamesList = gamesData.map((g, i) => {
+  		return (
+  			<div>
+  			hi
+  			</div>
+  		)
+  	})
 
   return (
     <div>
@@ -30,8 +41,11 @@ const Games = props => {
       	<input name="name" value={name} 
       		onChange={e => setName(e.target.value)} />
       </form>
-      {gamesData}
+      {gamesList}
+      
+      <div>
       {name}
+    </div>
 
     </div>
   )
