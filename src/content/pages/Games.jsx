@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { Link } from 'react-router-dom'
 import apicalypse from 'apicalypse'
 import axios from 'axios'
 const Games = props => {
@@ -14,22 +15,23 @@ const Games = props => {
 		fetch('https://api.rawg.io/api/games?search=' + name + '&page_size=10')
 		.then(response => response.json())
 		.then(data => {
-
-			for (let i = 0; i < 10; i++) {
-				gamesData.push(data.results[i])
-			}
-			console.log(gamesData)
-			console.log(gamesData[0].name)
+			console.log(data)
+			setGamesData(data.results)
 		})
 		.catch(err => {
 			console.log(err)
 		})
   	}
 
+  	const goToGame = e => {
+  		
+  	}
+
   	let gamesList = gamesData.map((g, i) => {
   		return (
-  			<div>
-  			hi
+  			<div key= {i}>
+  			{g.name}
+  			<Link to="/gameInfo/"></Link>
   			</div>
   		)
   	})
@@ -41,8 +43,8 @@ const Games = props => {
       	<input name="name" value={name} 
       		onChange={e => setName(e.target.value)} />
       </form>
-      {gamesList}
-      
+    	{gamesList}
+
       <div>
       {name}
     </div>
