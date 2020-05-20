@@ -14,7 +14,8 @@ const SubmitButton = props => {
           height: 48,
           padding: '0 30px',
           boxShadow: '0 0px 5px black',
-          margin: '10px'
+          margin: '10px',
+          fontSize: '16px'
         },
         label: {
           textTransform: 'capitalize',
