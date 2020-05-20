@@ -8,7 +8,7 @@ const GameInfo = props => {
 			getGameData()
 			getSuggested()
 		}
-	}, [])
+	}, [props.displayGame])
 	
 	let [gameData, setGameData] = useState({})
 	let [suggested, setSuggested] = useState([])
@@ -29,6 +29,8 @@ const GameInfo = props => {
 		})
   	}
 
+
+
   	const getSuggested = () => {
 		
 		fetch('https://api.rawg.io/api/games/' + props.displayGame.id + '/suggested')
@@ -42,9 +44,10 @@ const GameInfo = props => {
 		})
   	}
 
-  	 let suggestedList = suggested.map((s, i) => {
+  	let setGame = props.setGame
+  	let suggestedList = suggested.map((s, i) => {
   		return (
-  			<div key= {i} >
+  			<div key= {i} onClick={() => setGame(s)}>
         	{s.name}
   			</div>
         

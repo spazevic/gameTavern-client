@@ -24,13 +24,13 @@ const Games = props => {
   		console.log('hi')
 
   	}
-    let showClickedGame = props.showClickedGame
+    let setGame = props.setGame
   	let gamesList = gamesData.map((g, i) => {
   		return (
         
-  			<div key= {i} onClick={() => showClickedGame(g)}>
+  			<div key= {i} onClick={() => setGame(g)}>
   			{g.name}
-        <Link to='/gameinfo'>game</Link>
+        <Link to='/gameinfo'>Go to Game Page</Link>
   			</div>
         
   		)

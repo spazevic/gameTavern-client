@@ -25,10 +25,10 @@ const Content = props => {
       <Route exact path="/" component={Home} />
       <Route exact path="/freeGames" component={FreeGames} />
       <Route path ='/games' render={() => 
-          <Games showClickedGame={updateCurrentGame} />
+          <Games setGame={updateCurrentGame} />
       } />
       <Route path ='/gameinfo' render={() => 
-          <GameInfo displayGame={currentGame} />
+          <GameInfo displayGame={currentGame} setGame={updateCurrentGame} />
       } />
       <Route path="/login" render={
         () => <Login user={props.user} updateToken={props.updateToken} />
