@@ -1,5 +1,5 @@
 // Packages
-import React from 'react'
+import React, {useState} from 'react'
 import { Route } from 'react-router-dom'
 
 // Custom componentd
@@ -12,15 +12,24 @@ import GameInfo from './pages/GameInfo'
 import Signup from './pages/Signup'
 
 const Content = props => {
+  let [currentGame, setCurrentGame] = useState()
+
+  const updateCurrentGame = (game) => {
+    console.log('updating current game')
+    setCurrentGame(game)
+
+  }
   console.log(props.game)
   return (
     <div className="container">
       <Route exact path="/" component={Home} />
       <Route exact path="/freeGames" component={FreeGames} />
-      <Route exact path="/games" component={Games} />
+      <Route path ='/games' render={() => 
+          <Games showClickedGame={updateCurrentGame} />
+      } />
       <Route path ='/gameinfo' render={() => 
-          <GameInfo />
-        }/>
+          <GameInfo displayGame={currentGame} />
+      } />
       <Route path="/login" render={
         () => <Login user={props.user} updateToken={props.updateToken} />
       } />

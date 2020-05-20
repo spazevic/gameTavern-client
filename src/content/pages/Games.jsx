@@ -1,12 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import apicalypse from 'apicalypse'
 import axios from 'axios'
 import GameInfo from './GameInfo'
 const Games = props => {
-	useEffect(() => {
-		// callApi()
-	}, [])
 	let [gamesData, setGamesData] = useState([])
 	let [name, setName] = useState('')
 
@@ -28,17 +24,12 @@ const Games = props => {
   		console.log('hi')
 
   	}
-
+    let showClickedGame = props.showClickedGame
   	let gamesList = gamesData.map((g, i) => {
   		return (
         
-  			<div key= {i} onClick={goToGame}>
+  			<div key= {i} onClick={() => showClickedGame(g)}>
   			{g.name}
-        <Router>
-  			<Route path ='/gameinfo' render={() => 
-          <GameInfo game = {g} />
-        }/>
-        </Router>
         <Link to='/gameinfo'>game</Link>
   			</div>
         
@@ -52,7 +43,8 @@ const Games = props => {
       	<input name="name" value={name} 
       		onChange={e => setName(e.target.value)} />
       </form>
-    	{gamesList}
+      {gamesList}
+
 
 
       <div>
