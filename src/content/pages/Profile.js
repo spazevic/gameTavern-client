@@ -39,12 +39,22 @@ const Profile = props => {
     return <Redirect to="/login" />
   }
 
+  // style={{backgroundImage: `url(${props.user.background})`}}
+
   return (
     <div>
+      <div className="userBanner">
+        <div className="userBackground" style={{  
+          backgroundImage: `url(${props.user.background})`}}>
+        </div>
+        <div className="profBorder">
+          <img className="profPic" src={props.user.pic} alt={props.user.firstname}></img>
+        </div>
+        <h1>{props.user.username}</h1>
+      </div>
       <h2>
-        {props.user.firstname}
+        {props.user.firstname} {props.user.lastname}
       </h2>
-      <img src={props.user.pic} alt={props.user.firstname}></img>
       <h2>{secretMessage}</h2>
     </div>
   )
