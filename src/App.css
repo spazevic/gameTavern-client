@@ -165,7 +165,7 @@ nav a:hover {
   background-color: black;
   width: 200px;
   margin: 10px 10px 20px 10px;
-  border-radius: 10px;
+  border-radius: 10px; 
 }
 
 .card:hover {
@@ -192,6 +192,10 @@ a:hover {
   grid-template-columns: auto auto auto;
   grid-gap: 50px 100px;
   margin-top: 5%;
+}
+
+.freegames {
+  margin: 5%;
 }
 
 

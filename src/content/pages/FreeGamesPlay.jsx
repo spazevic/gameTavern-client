@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+
+
 const FreeGamesPlay = props => {
+	let gameUrl = "https://www.addictinggames.com/embed/html5-games/" + props.freeGame
   return (
-    <div>
-      FreeGamesPlay Stub!
-    <iframe width="800" height="600" src="https://www.addictinggames.com/embed/html5-games/20816" scrolling="no"></iframe>
+    <div class="freegames">
+    <iframe width="800" height="600" src={gameUrl} scrolling="no"></iframe>
   	</div>
   )
 }

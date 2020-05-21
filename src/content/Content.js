@@ -15,6 +15,12 @@ import Signup from './pages/Signup'
 
 const Content = props => {
   let [currentGame, setCurrentGame] = useState()
+  let [freeGame, setFreeGame] = useState()
+
+  const updateFreeGame = (freeGameId) => {
+    console.log('heres your game')
+    setFreeGame(freeGameId)
+  }
 
   const updateCurrentGame = (game) => {
     console.log('updating current game')
@@ -25,7 +31,10 @@ const Content = props => {
   return (
     <div className="container">
       <Route exact path="/" component={Home} />
-      <Route exact path="/freeGames" component={FreeGames} />
+      <Route path ='/FreeGames' render={() => 
+          <FreeGames setFreeGame={updateFreeGame}/>
+      } />
+      <Route path="/FreeGamesPlay" render={() => <FreeGamesPlay freeGame={freeGame}/>} />
       <Route path ='/games' render={() => 
           <Games setGame={updateCurrentGame} />
       } />
