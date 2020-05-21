@@ -58,9 +58,8 @@ const Games = props => {
       {name}
       </div>
     <div>
-      <video width ="320" height="240">
-        <source src='https://steamcdn-a.akamaihd.net/steam/apps/256701811/movie_max.mp4' />
-       </video>
+    <p>hi</p>
+     
     </div>
     </div>
   )
