@@ -4,12 +4,14 @@ import { Route } from 'react-router-dom'
 
 // Custom componentd
 import FreeGames from './pages/FreeGames'
+import FreeGamesPlay from './pages/FreeGamesPlay'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Games from './pages/Games'
 import GameInfo from './pages/GameInfo'
 import Signup from './pages/Signup'
+
 
 const Content = props => {
   let [currentGame, setCurrentGame] = useState()
