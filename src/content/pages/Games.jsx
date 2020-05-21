@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import axios from 'axios'
-import GameInfo from './GameInfo'
+import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
+// import axios from 'axios'
+// import GameInfo from './GameInfo'
 const Games = props => {
 	let [gamesData, setGamesData] = useState([])
 	let [name, setName] = useState('')
@@ -20,10 +20,10 @@ const Games = props => {
 		})
   	}
 
-  	const goToGame = e => {
-  		console.log('hi')
+  	// const goToGame = e => {
+  	// 	console.log('hi')
 
-  	}
+  	// }
     let setGame = props.setGame
   	let gamesList = gamesData.map((g, i) => {
   		return (

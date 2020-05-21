@@ -18,6 +18,7 @@
 
 main {
   padding: 0 0 50px 0;
+  min-height: 90vh;
 }
 
 footer {
@@ -125,7 +126,6 @@ nav a:hover {
   background-image: linear-gradient(45deg, #CE3B5B 30%, #CF5E23 90%);
   padding-bottom: 20px;
   position: relative;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -153,6 +153,82 @@ nav a:hover {
   object-fit: cover;
 }
 
+.profContainer {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.profileInfo {
+  background-color: #282c34;
+  width: 500px;
+  margin-right: auto;
+  margin-left: 20px;
+  min-height: 60px;
+  height: 80px;
+  padding: 0 30px;
+  text-align: left;
+  border-radius: 0 0 5px 5px;
+}
+
+.profileInfo h2, .profileInfo p{
+  margin: 5px;
+}
+
+.infoBox div{
+  margin-bottom: 20px;
+}
+
+.profInfo {
+  width: 200px;
+  background-color: #282c34;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px black;
+  text-align: left;
+  margin-left: auto;
+  margin-right: 30px;
+
+}
+
+.profInfo h2 {
+  text-align: center;
+}
+
+.profInfo p {
+  background-image: linear-gradient(45deg, #CE3B5B 30%, #CF5E23 90%);
+  width: 150px;
+  padding: 5px;
+  border-radius: 20px;
+  margin: 5px;
+  text-align: center;
+}
+
+
+
+.contentLinks {
+  background-color: #282c34;
+  padding: 10px;
+  min-height: 30px;
+  border-radius: 0 0 5px 5px;
+  width: 250px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.contentLinks div {
+  display: inline;
+}
+
+.contentLinks img {
+  width: 30px;
+  height: auto;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+
+.contentLinks img:hover {
+  box-shadow: 0px 0px 5px white;
+}
 
 
 
