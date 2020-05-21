@@ -1,8 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import Games from './Games'
+//import Games from './Games'
 
 
 const GameInfo = props => {
+	let [gameData, setGameData] = useState({})
+	let [suggested, setSuggested] = useState([])
+	let [platforms, setPlatforms] = useState([])
+	
+	
 	useEffect(() => {
 		if(props.displayGame) {
 			getGameData()
@@ -10,9 +15,7 @@ const GameInfo = props => {
 		}
 	}, [props.displayGame])
 	
-	let [gameData, setGameData] = useState({})
-	let [suggested, setSuggested] = useState([])
-	let [platforms, setPlatforms] = useState([])
+	
 
 	const getGameData = () => {
 		
