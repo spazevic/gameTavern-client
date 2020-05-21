@@ -1,12 +1,15 @@
 // Packages
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { Button, withStyles } from '@material-ui/core'
 import ExpansionPanel from '../components/ExpansionPanel'
+import SubmitButton from '../components/SubmitButton'
 
 const Signup = props => {
   let panels = [{ title: (<h3>Gamer Profile</h3>), content: (
     <div className="userInputs">
+            <div>
+              <input className="textInputs" id="username" label="Username" name="username" placeholder="Username" onChange={e => setUsername(e.target.value)} />
+            </div>
             <div>
               <input className="textInputs" id="firstname" label="First Name" name="firstname" placeholder="Your first name" onChange={e => setFirstname(e.target.value)} />
               <input className="textInputs" id="lastname" label="Last Name" name="lastname" placeholder="Your last name" onChange={e => setLastname(e.target.value)} /> 
@@ -52,6 +55,7 @@ const Signup = props => {
           </div>
   )}]
   // Declare and initialize state variables
+  let [username, setUsername] = useState('')
   let [email, setEmail] = useState('')
   let [firstname, setFirstname] = useState('')
   let [lastname, setLastname] = useState('')
@@ -82,6 +86,7 @@ const Signup = props => {
     fetch(process.env.REACT_APP_SERVER_URL + 'auth/signup', {
       method: 'POST',
       body: JSON.stringify({
+        username,
         email,
         password,
         firstname,
@@ -134,21 +139,21 @@ const Signup = props => {
     return <Redirect to="/profile" />
   }
 
-  const StyledButton = withStyles({
-    root: {
-      background: 'linear-gradient(45deg, #CE3B5B 30%, #CF5E23 90%)',
-      borderRadius: 3,
-      border: 0,
-      color: 'white',
-      height: 48,
-      padding: '0 30px',
-      boxShadow: '0 0px 5px black',
-      margin: '10px'
-    },
-    label: {
-      textTransform: 'capitalize',
-    },
-  })(Button);
+  // const SubmitButton = withStyles({
+  //   root: {
+  //     background: 'linear-gradient(45deg, #CE3B5B 30%, #CF5E23 90%)',
+  //     borderRadius: 3,
+  //     border: 0,
+  //     color: 'white',
+  //     height: 48,
+  //     padding: '0 30px',
+  //     boxShadow: '0 0px 5px black',
+  //     margin: '10px'
+  //   },
+  //   label: {
+  //     textTransform: 'capitalize',
+  //   },
+  // })(Button);
 
 
 
@@ -158,10 +163,10 @@ const Signup = props => {
       <span className="red">{message}</span>
       <form onSubmit={handleSubmit}>
         <div className="signy">
-        <h2>Sign Up</h2>
-        <ExpansionPanel panels={panels} />
-          
-          <StyledButton type="submit">Sign Me Up!</StyledButton>
+          <h2>Sign Up</h2>
+          <p>Welcome!</p>
+          <ExpansionPanel panels={panels} />
+          <SubmitButton />
         </div>
       </form>
     </div>

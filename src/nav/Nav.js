@@ -28,6 +28,9 @@ const Nav = props => {
     links = (
       <span>
       <li>
+        <Link to="/games">Games</Link>
+      </li>
+      <li>
         <Link to="/freeGames">Free Games</Link>
       </li>
       <li>
