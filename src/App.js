@@ -6,9 +6,10 @@ import jwtDecode from 'jwt-decode'
 // Resources and custom components
 import './App.css';
 import Content from './content/Content'
-import Footer from './nav/Footer'
+
 
 import Nav from './nav/Nav'
+import StickyFooter from './nav/StickyFooter';
 
 const App = props => {
   // Declare state variables
@@ -57,7 +58,8 @@ const updateToken = (newToken) => {
         <main>
           <Content user={user} updateToken={updateToken}/>
         </main>
-        <Footer />
+
+        <StickyFooter />
       </div>
     </Router>
   )
