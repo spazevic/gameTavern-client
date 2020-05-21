@@ -28,7 +28,7 @@ const Content = props => {
           <Games setGame={updateCurrentGame} />
       } />
       <Route path ='/gameinfo' render={() => 
-          <GameInfo displayGame={currentGame} setGame={updateCurrentGame} />
+          <GameInfo displayGame={currentGame} setGame={updateCurrentGame} user={props.user} />
       } />
       <Route path="/login" render={
         () => <Login user={props.user} updateToken={props.updateToken} />

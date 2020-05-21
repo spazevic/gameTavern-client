@@ -13,23 +13,23 @@ const GameInfo = props => {
 	let [gameData, setGameData] = useState({})
 	let [suggested, setSuggested] = useState([])
 	let [platforms, setPlatforms] = useState([])
+	let [gameId, setGameId] = useState('')
+	console.log(props.user)
 
 	const getGameData = () => {
-		
 		fetch('https://api.rawg.io/api/games/' + props.displayGame.id)
 		.then(response => response.json())
 		.then(data => {
 			console.log(data)
 			console.log(props.displayGame)
 			setGameData(data)
+			setGameId(props.displayGame.id)
 			setPlatforms(data.platforms)
 		})
 		.catch(err => {
 			console.log(err)
 		})
   	}
-
-
 
   	const getSuggested = () => {
 		
@@ -42,6 +42,26 @@ const GameInfo = props => {
 		.catch(err => {
 			console.log(err)
 		})
+  	}
+
+  	const addFav = (game) => {
+  		console.log(gameId)
+  		fetch(process.env.REACT_APP_SERVER_URL + 'auth/games', {
+	      method: 'PUT',
+	      body: JSON.stringify({
+	      	email: props.user.email,
+	       	gameId: gameId
+	      }),
+	      headers: {
+	        'Content-Type': 'application/json'
+	      }
+	    })
+	    .then(response => {
+	    	console.log(response)
+	    })
+	    .catch(err => {
+	    	console.log(err)
+	    })
   	}
 
   	let setGame = props.setGame
@@ -61,6 +81,7 @@ const GameInfo = props => {
         
   		)
   	})
+
   	console.log(suggested)
 	if(!props.displayGame) {
 		return (
@@ -74,6 +95,9 @@ const GameInfo = props => {
       	<div>
    		{props.displayGame.name}
    		</div>
+   		<div onClick={addFav}>
+   			Add to faves
+   		</div>
    		<div>
    		Playtime:{props.displayGame.playtime}
    		</div>
@@ -83,7 +107,7 @@ const GameInfo = props => {
    		<div>
    		<h3>Platforms:</h3>{platformsList}
    		</div>
-   		<a href={gameData.website}>{gameData.website}</a>
+   		<a href={gameData.website} target="_blank">{gameData.website}</a>
    		<h3>Suggested Games:</h3>
    		{suggestedList}
    		

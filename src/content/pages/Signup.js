@@ -159,7 +159,6 @@ const Signup = props => {
 
   return (
     <div>
-      
       <span className="red">{message}</span>
       <form onSubmit={handleSubmit}>
         <div className="signy">

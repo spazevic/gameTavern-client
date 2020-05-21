@@ -36,21 +36,32 @@ const Games = props => {
   		)
   	})
 
+      let hello = () => {
+       return (
+         <div>hi</div>
+       )
+     }
+
   return (
     <div>
+    {hello}
       <h1>Games Stub!</h1>
       <form onSubmit={callApi} >
       	<input name="name" value={name} 
       		onChange={e => setName(e.target.value)} />
       </form>
-      {gamesList}
+      {gamesList} 
 
 
 
       <div>
       {name}
+      </div>
+    <div>
+      <video width ="320" height="240">
+        <source src='https://steamcdn-a.akamaihd.net/steam/apps/256701811/movie_max.mp4' />
+       </video>
     </div>
-
     </div>
   )
 }
