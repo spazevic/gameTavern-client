@@ -31,11 +31,9 @@ const Games = props => {
   			<div key= {i} onClick={() => setGame(g)}>
   			{g.name}
         <Link to='/gameinfo'>Go to Game Page</Link>
-  			</div>
-        
+  			</div>       
   		)
   	})
-
       let hello = () => {
        return (
          <div>hi</div>
@@ -51,15 +49,11 @@ const Games = props => {
       		onChange={e => setName(e.target.value)} />
       </form>
       {gamesList} 
-
-
-
       <div>
       {name}
       </div>
     <div>
     <p>hi</p>
-     
     </div>
     </div>
   )
