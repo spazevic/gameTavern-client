@@ -31,26 +31,30 @@ const Games = props => {
   			<div key= {i} onClick={() => setGame(g)}>
   			{g.name}
         <Link to='/gameinfo'>Go to Game Page</Link>
-  			</div>
-        
+  			</div>       
   		)
   	})
+      let hello = () => {
+       return (
+         <div>hi</div>
+       )
+     }
 
   return (
     <div>
+    {hello}
       <h1>Games Stub!</h1>
       <form onSubmit={callApi} >
       	<input name="name" value={name} 
       		onChange={e => setName(e.target.value)} />
       </form>
-      {gamesList}
-
-
-
+      {gamesList} 
       <div>
       {name}
+      </div>
+    <div>
+    <p>hi</p>
     </div>
-
     </div>
   )
 }
