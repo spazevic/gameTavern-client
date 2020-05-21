@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 
 // Custom componentd
 import FreeGames from './pages/FreeGames'
+import FreeGamesPlay from './pages/FreeGamesPlay'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
@@ -11,8 +12,15 @@ import Games from './pages/Games'
 import GameInfo from './pages/GameInfo'
 import Signup from './pages/Signup'
 
+
 const Content = props => {
   let [currentGame, setCurrentGame] = useState()
+  let [freeGame, setFreeGame] = useState()
+
+  const updateFreeGame = (freeGameId) => {
+    console.log('heres your game')
+    setFreeGame(freeGameId)
+  }
 
   const updateCurrentGame = (game) => {
     console.log('updating current game')
@@ -23,7 +31,10 @@ const Content = props => {
   return (
     <div className="container">
       <Route exact path="/" component={Home} />
-      <Route exact path="/freeGames" component={FreeGames} />
+      <Route path ='/FreeGames' render={() => 
+          <FreeGames setFreeGame={updateFreeGame}/>
+      } />
+      <Route path="/FreeGamesPlay" render={() => <FreeGamesPlay freeGame={freeGame}/>} />
       <Route path ='/games' render={() => 
           <Games setGame={updateCurrentGame} />
       } />
