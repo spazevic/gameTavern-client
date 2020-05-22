@@ -50,6 +50,8 @@ const Profile = props => {
     return <Redirect to="/login" />
   }
 
+  
+
   let steamId;
   if (props.user.tags.steamId) {
     steamId = (
@@ -127,6 +129,7 @@ const Profile = props => {
       </div>
     )
   }
+
   let youTube;
   if (props.user.creator.youTube) {
     youTube = (
@@ -181,9 +184,14 @@ const Profile = props => {
         <h1>{props.user.username}</h1>
       </div>
       <div className="profContainer">
-        <div className="profileInfo">
-          <h2>{props.user.firstname} {props.user.lastname}</h2>
-          <p>{props.user.bio}</p>
+        <div>
+          <div className="profileInfo">
+            <h2>{props.user.firstname} {props.user.lastname}</h2>
+            <p>{props.user.bio}</p>
+          </div>
+          <div className="userGames">
+            <div>User Games Stub</div>
+          </div>
         </div>
         <div className="infoBox">
           <div className="contentLinks">
