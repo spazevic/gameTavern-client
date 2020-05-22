@@ -266,6 +266,9 @@ nav a:hover {
   box-shadow: 0 0px 16px #CE3B5B;
 }
 
+.gameCard video:focus {
+  outline: 0;
+}
 
 .freeGameTitle {
   padding: 6px 16px;

@@ -28,10 +28,10 @@ const FreeGames = props => {
                 </div>
             </div>
             <div className="gameCard">
-                <video src="https://www.addictinggames.com/sites/default/files/big-farm-mmo.mp4" width="200" controls autoplay>
+                <video src="https://www.addictinggames.com/sites/default/files/geometry-tower.mp4" width="200" controls autoplay>
                 </video>
-                <div className="freeGameTitle">
-                    <Link to="/FreeGamesPlay"><b>Big Farm</b></Link>
+                <div className="freeGameTitle" onClick={() => setFreeGame(22905)}>
+                    <Link to="/FreeGamesPlay"><b>Geometry Tower</b></Link>
                 </div>
             </div>
             <div className="gameCard">
@@ -63,10 +63,10 @@ const FreeGames = props => {
                 </div>
             </div>
             <div className="gameCard">
-                <video src="https://www.addictinggames.com/sites/default/files/jewelish-blitz.mp4" width="200" controls autoplay>
+                <video src="https://www.addictinggames.com/sites/default/files/AirFighter.mp4" width="200" controls autoplay>
                 </video>
-                <div className="freeGameTitle">
-                    <Link to="/FreeGamesPlay"><b>Jewelish Blitz</b></Link>
+                <div className="freeGameTitle" onClick={() => setFreeGame(18484)}>
+                    <Link to="/FreeGamesPlay"><b>Air Fighter</b></Link>
                 </div>
             </div>
             <div className="gameCard">
