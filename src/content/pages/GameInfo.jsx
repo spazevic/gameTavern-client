@@ -6,14 +6,18 @@ const GameInfo = props => {
 	let [gameData, setGameData] = useState({})
 	let [suggested, setSuggested] = useState([])
 	let [platforms, setPlatforms] = useState([])
+	let [gamesArray, setGamesArray] = useState([])
 	let [gameId, setGameId] = useState('')
-	console.log(props.user)
+	let [favs, setFavs] = useState([])
+	let [gamesTest, setGamesTest] = useState(false)
+
 	
 	
 	useEffect(() => {
 		if(props.displayGame) {
 			getGameData()
 			getSuggested()
+			getGames()
 		}
 	}, [props.displayGame])
 	
@@ -22,8 +26,10 @@ const GameInfo = props => {
 		fetch('https://api.rawg.io/api/games/' + props.displayGame.id)
 		.then(response => response.json())
 		.then(data => {
-			console.log(data)
-			console.log(props.displayGame)
+			let array = gamesArray
+			array.push(data)
+			console.log('im in side game data')
+			setGamesArray(array)
 			setGameData(data)
 			setGameId(props.displayGame.id)
 			setPlatforms(data.platforms)
@@ -38,7 +44,6 @@ const GameInfo = props => {
 		fetch('https://api.rawg.io/api/games/' + props.displayGame.id + '/suggested')
 		.then(response => response.json())
 		.then(data => {
-			console.log(data)
 			setSuggested(data.results)
 		})
 		.catch(err => {
@@ -47,6 +52,7 @@ const GameInfo = props => {
   	}
 
   	const addFav = (game) => {
+  		setGamesTest(true)
   		console.log(gameId)
   		fetch(process.env.REACT_APP_SERVER_URL + 'auth/games', {
 	      method: 'PUT',
@@ -64,6 +70,64 @@ const GameInfo = props => {
 	    .catch(err => {
 	    	console.log(err)
 	    })
+  	}
+
+  		const deleteFav = (game) => {
+  		setGamesTest(false)
+  		console.log(gameId)
+  		fetch(process.env.REACT_APP_SERVER_URL + 'auth/gamesRemove', {
+	      method: 'PUT',
+	      body: JSON.stringify({
+	      	email: props.user.email,
+	       	gameId: gameId
+	      }),
+	      headers: {
+	        'Content-Type': 'application/json'
+	      }
+	    })
+	    .then(response => {
+	    	console.log(response)
+	    })
+	    .catch(err => {
+	    	console.log(err)
+	    })
+  	}
+
+  	const getGames = () => {
+  		console.log('get games')
+  		console.log(props.user)
+  		fetch(process.env.REACT_APP_SERVER_URL + 'auth/userGames/' + props.user.username, {
+	      method: 'GET',
+	      headers: {
+	        'Content-Type': 'application/json'
+	      }
+	    })
+	     .then(response => response.json()
+	    	.then(results => {
+	    		console.log(results)
+	    		setFavs(results)
+	    	})
+	    	.catch(err => {
+	    		console.log(err)
+	    	})
+	    )
+	    .catch(err => {
+	    	console.log(err)
+	    })
+  	}
+
+  	
+
+  	const backButton = () => {
+  		let array = gamesArray
+  		array.pop()
+  		setGamesArray(array)
+  		console.log(gamesArray.length)
+  		console.log(gamesArray)
+  		setGame(gamesArray[gamesArray.length - 1])
+  		
+  		
+  		
   	}
 
   	let setGame = props.setGame
@@ -84,7 +148,31 @@ const GameInfo = props => {
   		)
   	})
 
-  	console.log(suggested)
+  	 let favesButton = favs.map((f, i) => {
+  	 	if (f === props.displayGame.id) {
+  	 		setGamesTest(true)
+  	 	} 
+        
+  	})
+
+
+  	 let favButton;
+  
+
+  	 if (gamesTest === false) {
+  	 	favButton = (
+  	 	<button onClick={addFav}>
+   			Add to faves
+   		</button>
+  	 )
+  	 } else {
+  	 	favButton = (
+  	 	<button onClick={deleteFav}>
+   			Delete from faves
+   		</button>
+  	 	)
+  	 }
+
 	if(!props.displayGame) {
 		return (
 	    <div>
@@ -97,9 +185,7 @@ const GameInfo = props => {
       	<div>
    		{props.displayGame.name}
    		</div>
-   		<div onClick={addFav}>
-   			Add to faves
-   		</div>
+   		{favButton}
    		<div>
    		Playtime:{props.displayGame.playtime}
    		</div>
@@ -112,6 +198,7 @@ const GameInfo = props => {
    		<a href={gameData.website} target="_blank">{gameData.website}</a>
    		<h3>Suggested Games:</h3>
    		{suggestedList}
+   		<div onClick={backButton}>Back button</div>
    		
     </div>
   ) }

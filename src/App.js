@@ -24,6 +24,7 @@ const decodeToken = () => {
   if (token) {
     // Decrypt the user data from the token
     let decodeUser = jwtDecode(token)
+    console.log(token)
     
 
     // I the token is not valid or expiration date has passed, user stays lon out
