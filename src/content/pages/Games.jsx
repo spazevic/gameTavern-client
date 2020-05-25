@@ -45,7 +45,7 @@ const Games = props => {
     {hello}
       <h1>Games Stub!</h1>
       <form onSubmit={callApi} >
-      	<input name="name" value={name} 
+      	<input className="textInput" name="name" value={name} 
       		onChange={e => setName(e.target.value)} />
       </form>
       {gamesList} 

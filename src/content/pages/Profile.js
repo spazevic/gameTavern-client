@@ -5,6 +5,7 @@ import twitch from '../../images/twitch.jpg'
 import mixer from '../../images/mixer.png'
 import instagram from '../../images/instagram.png'
 import twitter from '../../images/twitter.png'
+import EditButton from '../components/EditButton'
 
 
 const Profile = props => {
@@ -25,7 +26,7 @@ const Profile = props => {
     })
     .then(response => {
       console.log('Response', response)
-
+      
       // Make sure there is a good response
       if (!response.ok) {
         setSecretMessage('Nice try!')
@@ -48,6 +49,8 @@ const Profile = props => {
   // Make sure there is a user before trying to show their info
   if (!props.user) {
     return <Redirect to="/login" />
+  } else {
+    console.log(props.user.games)
   }
 
   
@@ -190,7 +193,10 @@ const Profile = props => {
             <p>{props.user.bio}</p>
           </div>
           <div className="userGames">
-            <div>User Games Stub</div>
+            <div>
+              <h2>Favorite Games</h2>
+            
+            </div>
           </div>
         </div>
         <div className="infoBox">
@@ -213,10 +219,10 @@ const Profile = props => {
           </div>
         </div>
       </div>
-      <h2>
-        {props.user.firstname} {props.user.lastname}
-      </h2>
-      <h2>{secretMessage}</h2>
+      <div>
+        <EditButton />
+      </div>
+      
     </div>
   )
 }
