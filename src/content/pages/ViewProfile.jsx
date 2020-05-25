@@ -7,8 +7,11 @@ import instagram from '../../images/instagram.png'
 import twitter from '../../images/twitter.png'
 
 
-const Profile = props => {
+const ViewProfile = props => {
   let [secretMessage, setSecretMessage] = useState('')
+  let [viewed, setViewed] = useState()
+  let [favGames, setFavGames] = useState([])
+  console.log(props.user)
   
 
 
@@ -17,180 +20,214 @@ const Profile = props => {
 
   useEffect(() => {
     // Get the token from local storage
-    let token = localStorage.getItem('boilerToken')
-    fetch(process.env.REACT_APP_SERVER_URL + 'profile', {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-    .then(response => {
-      console.log('Response', response)
+    getUser()
+    getGames()
+  },[])
 
-      // Make sure there is a good response
-      if (!response.ok) {
-        setSecretMessage('Nice try!')
-        return
-      }
+  const getUser = () => {
+      console.log('get friends')
+      console.log(props.user)
 
-      // We did get a good response
-      response.json()
-      .then(result => {
-        console.log(result)
-        setSecretMessage(result.message)
+      
+      fetch(process.env.REACT_APP_SERVER_URL + 'auth/userView/' + props.user, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
-    })
-    .catch(err => {
-      console.log(err)
-      setSecretMessage('No message for you!')
-    })
+       .then(response => response.json()
+        .then(results => {
+          console.log(results)
+          setViewed(results)
+                    
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      )
+      .catch(err => {
+        console.log(err)
+      })
+    }
+
+     const getGames = () => {
+      console.log('get games')
+      console.log(props.user)
+      fetch(process.env.REACT_APP_SERVER_URL + 'auth/userGames/' + props.user, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+       .then(response => response.json()
+        .then(results => {
+          console.log(results)
+          setFavGames(results)
+
+          
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      )
+      .catch(err => {
+        console.log(err)
+      })
+    }
+
+    let loopFavs = favGames.map((f, i) => {
+    console.log(f)
+
+    return (
+      <div>{f}</div>
+      )
+
   })
 
   // Make sure there is a user before trying to show their info
-  if (!props.user) {
-    return <Redirect to="/login" />
-  }
 
   
 
   let steamId;
-  if (props.user.tags.steamId) {
+  if (viewed && viewed.tags.steamId) {
     steamId = (
       <div>
         <span>
           <strong>Steam ID: </strong>
-          <p>{props.user.tags.steamId}</p>
+          <p>{viewed.tags.steamId}</p>
         </span>
       </div>
     )
   }
   let originId;
-  if (props.user.tags.originId) {
+  if (viewed && viewed.tags.originId) {
     originId = (
       <div>
         <span>
           <strong>Origin ID: </strong>
-          <p>{props.user.tags.originId}</p>
+          <p>{viewed.tags.originId}</p>
         </span>
       </div>
     )
   }
   let battleNetId;
-  if (props.user.tags.battleNetId) {
+  if (viewed && viewed.tags.battleNetId) {
     battleNetId = (
       <div>
         <span>
           <strong>Battle.net ID: </strong>
-          <p>{props.user.tags.battleNetId}</p>
+          <p>{viewed.tags.battleNetId}</p>
         </span>
       </div>
     )
   }
   let epicGamesId;
-  if (props.user.tags.epicGamesId) {
+  if (viewed && viewed.tags.epicGamesId) {
     epicGamesId = (
       <div>
         <span>
           <strong>Epic Games ID: </strong>
-          <p>{props.user.tags.epicGamesId}</p>
+          <p>{viewed.tags.epicGamesId}</p>
         </span>
       </div>
     )
   }
   let xboxGamerTag;
-  if (props.user.tags.xboxGamerTag) {
+  if (viewed && viewed.tags.xboxGamerTag) {
     xboxGamerTag = (
       <div>
         <span>
           <strong>Xbox Gamer Tag: </strong>
-          <p>{props.user.tags.xboxGamerTag}</p>
+          <p>{viewed.tags.xboxGamerTag}</p>
         </span>
       </div>
     )
   }
   let psnId;
-  if (props.user.tags.psnId) {
+  if (viewed && viewed.tags.psnId) {
     psnId = (
       <div>
         <span>
           <strong>PSN ID: </strong>
-          <p>{props.user.tags.psnId}</p>
+          <p>{viewed.tags.psnId}</p>
         </span>
       </div>
     )
   }
   let nintendoFriendCode;
-  if (props.user.tags.nintendoFriendCode) {
+  if (viewed && viewed.tags.nintendoFriendCode) {
     nintendoFriendCode = (
       <div>
         <span>
           <strong>Nintendo Friend Code: </strong>
-          <p>{props.user.tags.nintendoFriendCode}</p>
+          <p>{viewed.tags.nintendoFriendCode}</p>
         </span>
       </div>
     )
   }
 
   let youTube;
-  if (props.user.creator.youTube) {
+  if (viewed && viewed.creator.youTube) {
     youTube = (
       <div>
-        <a href={props.user.creator.youTube}><img src={youtube} alt="YouTube"></img></a>
+        <a href={viewed.creator.youTube}><img src={youtube} alt="YouTube"></img></a>
       </div>
     )
   }
   let Twitch;
-  if (props.user.creator.twitch) {
+  if (viewed && viewed.creator.twitch) {
     Twitch = (
       <div>
-        <a href={props.user.creator.twitch}><img src={twitch} alt="Twitch"></img></a>
+        <a href={viewed.creator.twitch}><img src={twitch} alt="Twitch"></img></a>
       </div>
     )
   }
   let Mixer;
-  if (props.user.creator.mixer) {
+  if (viewed && viewed.creator.mixer) {
     Mixer = (
       <div>
-        <a href={props.user.creator.mixer}><img src={mixer} alt="Mixer"></img></a>
+        <a href={viewed.creator.mixer}><img src={mixer} alt="Mixer"></img></a>
       </div>
     )
   }
   let Instagram;
-  if (props.user.creator.instagram) {
+  if (viewed && viewed.creator.instagram) {
     Instagram = (
       <div>
-        <a href={props.user.creator.instagram}><img src={instagram} alt="Instagram"></img></a>
+        <a href={viewed.creator.instagram}><img src={instagram} alt="Instagram"></img></a>
       </div>
     )
   }
   let Twitter;
-  if (props.user.creator.twitter) {
+  if (viewed && viewed.creator.twitter) {
     Twitter = (
       <div>
-        <a href={props.user.creator.twitter}><img src={twitter} alt="Twitter"></img></a>
+        <a href={viewed.creator.twitter}><img src={twitter} alt="Twitter"></img></a>
       </div>
     )
   }
-  // style={{backgroundImage: `url(${props.user.background})`}}
-
+  // style={{backgroundImage: `url(${viewed.background})`}}
+  if (viewed) {
   return (
     <div>
       <div className="userBanner">
         <div className="userBackground" style={{  
-          backgroundImage: `url(${props.user.background})`}}>
+          backgroundImage: `url(${viewed.background})`}}>
         </div>
         <div className="profBorder">
-          <img className="profPic" src={props.user.pic} alt={props.user.firstname}></img>
+          <img className="profPic" src={viewed.pic} alt={viewed.firstname}></img>
         </div>
-        <h1>{props.user.username}</h1>
+        <h1>{viewed.username}</h1>
       </div>
       <div className="profContainer">
         <div>
           <div className="profileInfo">
-            <h2>{props.user.firstname} {props.user.lastname}</h2>
-            <p>{props.user.bio}</p>
+            <h2>{viewed.firstname} {viewed.lastname}</h2>
+            <p>{viewed.bio}</p>
           </div>
           <div className="userGames">
-            <div>User Games Stub</div>
+            <div>Favorite Games</div>
+              {loopFavs}
           </div>
         </div>
         <div className="infoBox">
@@ -214,11 +251,16 @@ const Profile = props => {
         </div>
       </div>
       <h2>
-        {props.user.firstname} {props.user.lastname}
+        {viewed.firstname}
       </h2>
-      <h2>{secretMessage}</h2>
     </div>
   )
+  } else {
+    return (
+      <div>hi</div>
+      )
+  
+  }
 }
 
-export default Profile
+ export default ViewProfile

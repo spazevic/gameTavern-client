@@ -13,11 +13,14 @@ import GameInfo from './pages/GameInfo'
 import Signup from './pages/Signup'
 import EditProfile from './pages/EditProfile'
 import FriendsList from './pages/FriendsList'
+import ViewProfile from './pages/ViewProfile'
+import ViewUsers from './pages/ViewUsers'
 
 
 const Content = props => {
   let [currentGame, setCurrentGame] = useState()
   let [freeGame, setFreeGame] = useState()
+  let [viewUser, setViewUser] = useState()
 
   const updateFreeGame = (freeGameId) => {
     console.log('heres your game')
@@ -29,12 +32,21 @@ const Content = props => {
     setCurrentGame(game)
 
   }
+
+  const updateCurrentView= (view) => {
+    console.log('updating current viewed user')
+    console.log(view)
+    setViewUser(view)
+    
+
+  }
+
   console.log("hello")
   return (
     <div className="container">
       <Route exact path="/" component={Home} />
       <Route path ='/friendslist' render={() => 
-          <FriendsList user={props.user}/>
+          <FriendsList user={props.user} setCurrentView = {updateCurrentView}/>
       } />
       <Route path ='/FreeGames' render={() => 
           <FreeGames setFreeGame={updateFreeGame}/>
@@ -50,7 +62,13 @@ const Content = props => {
         () => <Login user={props.user} updateToken={props.updateToken} />
       } />
       <Route path="/profile" render={
-        () => <Profile user={props.user} />
+        () => <Profile user={props.user} setCurrentView = {updateCurrentView} />
+      } />
+      <Route path="/viewProfile" render={
+        () => <ViewProfile user={viewUser} />
+      } />
+      <Route path="/viewUsers" render={
+        () => <ViewUsers user={props.user} />
       } />
       <Route path="/signup" render={
         () => <Signup user={props.user} updateToken={props.updateToken} />
