@@ -42,7 +42,7 @@ const Profile = props => {
     })
     .catch(err => {
       console.log(err)
-      setSecretMessage('No message for you!')
+      setSecretMessage('No message for you, only for me!')
     })
     if(props.user) {
       getGames()
