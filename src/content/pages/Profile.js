@@ -15,10 +15,6 @@ const Profile = props => {
   
   
 
-
- 
-
-
   useEffect(() => {
     // Get the token from local storage
     let token = localStorage.getItem('boilerToken')
@@ -41,6 +37,9 @@ const Profile = props => {
       .then(result => {
         console.log(result)
         setSecretMessage(result.message)
+      })
+      .then(() => {
+        
       })
     })
     .catch(err => {
@@ -72,8 +71,13 @@ const Profile = props => {
       })
        .then(response => response.json()
         .then(results => {
+
           console.log(results)
           setFavGames(results)
+
+          // console.log(results)
+          setFavsId(results)
+
 
           
         })
@@ -85,6 +89,7 @@ const Profile = props => {
         console.log(err)
       })
     }
+
    
     // const getGameData = (game) => {
      
@@ -157,6 +162,7 @@ const Profile = props => {
 // let friendList = friends.map((f,i) => {
 //   console.log('hi')
 // })
+
 
 
 
@@ -302,11 +308,13 @@ const Profile = props => {
           <div className="userGames">
             <div>
               <h2>Favorite Games</h2>
+
               {loopFavs}
             </div>
             <div>
             <h2>Friend List</h2>
             {loopFriends}
+
             </div>
           </div>
         </div>

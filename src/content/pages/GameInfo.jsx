@@ -198,10 +198,10 @@ const GameInfo = props => {
    		</div>
    		{favButton}
    		<div>
-   		Playtime:{props.displayGame.playtime}
+   			Playtime:{props.displayGame.playtime}
    		</div>
    		<div>
-   		Rating:{props.displayGame.metacritic}
+   			Rating:{props.displayGame.metacritic}
    		</div>
    		<div>
    		<h3>Platforms:</h3>{platformsList}
