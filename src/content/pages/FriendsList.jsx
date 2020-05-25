@@ -54,6 +54,7 @@ const FriendsList = props => {
 
   	const getFriends = () => {
   		console.log('get friends')
+  		console.log('fuck you')
   		console.log(props.user)
 
   		
