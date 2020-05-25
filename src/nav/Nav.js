@@ -35,6 +35,9 @@ const Nav = props => {
         <Link to="/freeGames">Free Games</Link>
       </li>
       <li>
+        <Link to="/viewUsers">Users</Link>
+      </li>
+      <li>
         <Link to="/profile">Profile</Link>
       </li>
       <li>

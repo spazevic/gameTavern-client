@@ -7,7 +7,7 @@ const GameInfo = props => {
 	let [suggested, setSuggested] = useState([])
 	let [platforms, setPlatforms] = useState([])
 	let [gamesArray, setGamesArray] = useState([])
-	let [gameId, setGameId] = useState('')
+	let [name, setName] = useState('')
 	let [favs, setFavs] = useState([])
 	let [gamesTest, setGamesTest] = useState(false)
 
@@ -28,7 +28,7 @@ const GameInfo = props => {
 		.then(response => response.json())
 		.then(data => {
 			setGameData(data)
-			setGameId(props.displayGame.id)
+			setName(props.displayGame.name)
 			setPlatforms(data.platforms)
 			//setGamesHistory(data)
 			console.log(gamesArray)
@@ -60,12 +60,12 @@ const GameInfo = props => {
 
   	const addFav = (game) => {
   		setGamesTest(true)
-  		console.log(gameId)
-  		fetch(process.env.REACT_APP_SERVER_URL + 'auth/games', {
+  		console.log(name)
+  		fetch(process.env.REACT_APP_SERVER_URL + 'auth/gamesAdd', {
 	      method: 'PUT',
 	      body: JSON.stringify({
 	      	email: props.user.email,
-	       	gameId: gameId
+	       	name: name
 	      }),
 	      headers: {
 	        'Content-Type': 'application/json'
@@ -81,12 +81,12 @@ const GameInfo = props => {
 
   		const deleteFav = (game) => {
   		setGamesTest(false)
-  		console.log(gameId)
+  		console.log(name)
   		fetch(process.env.REACT_APP_SERVER_URL + 'auth/gamesRemove', {
 	      method: 'PUT',
 	      body: JSON.stringify({
 	      	email: props.user.email,
-	       	gameId: gameId
+	       	name: name
 	      }),
 	      headers: {
 	        'Content-Type': 'application/json'
