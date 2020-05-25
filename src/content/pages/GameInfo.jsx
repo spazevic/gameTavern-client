@@ -19,25 +19,32 @@ const GameInfo = props => {
 			getSuggested()
 			getGames()
 		}
-	}, [props.displayGame])
+	}, [props.displayGame, gamesArray])
 	
+	let setGame = props.setGame
 
 	const getGameData = () => {
 		fetch('https://api.rawg.io/api/games/' + props.displayGame.id)
 		.then(response => response.json())
 		.then(data => {
-			let array = gamesArray
-			array.push(data)
-			console.log('im in side game data')
-			setGamesArray(array)
 			setGameData(data)
 			setGameId(props.displayGame.id)
 			setPlatforms(data.platforms)
+			//setGamesHistory(data)
+			console.log(gamesArray)
 		})
 		.catch(err => {
 			console.log(err)
 		})
-  	}
+  }
+  	// const setGamesHistory = (game) => {
+  	// 	gamesArray.push(game)
+  	// 	if (gamesArray[gamesArray.length -1] === gamesArray[gamesArray.length -2]) {
+  	// 		console.log('hi')
+  	// 	}
+  	// 	console.log(gamesArray)
+  		
+  	//}
 
   	const getSuggested = () => {
 		
@@ -119,21 +126,25 @@ const GameInfo = props => {
   	
 
   	const backButton = () => {
-  		let array = gamesArray
-  		array.pop()
-  		setGamesArray(array)
-  		console.log(gamesArray.length)
+  		// if(gamesArray[gamesArray.length - 1] == gamesArray[gamesArray.length - 2]) {
+  		// 	gamesArray.pop()
+  		// }
+  		gamesArray.pop()
   		console.log(gamesArray)
-  		setGame(gamesArray[gamesArray.length - 1])
-  		
-  		
+  		// let count = 0;
+  		// for (let i = 0; i < gamesArray.length; i++) {
+  		// 	count++
+  		// }
+  		setGame(gamesArray[gamesArray.length-1])
+  
   		
   	}
 
-  	let setGame = props.setGame
   	let suggestedList = suggested.map((s, i) => {
   		return (
-  			<div key= {i} onClick={() => setGame(s)}>
+  			<div key= {i} onClick={() => {
+  				gamesArray.push(gameData)
+  				setGame(s)}}>
         	{s.name}
   			</div>
         
@@ -148,12 +159,12 @@ const GameInfo = props => {
   		)
   	})
 
-  	 let favesButton = favs.map((f, i) => {
-  	 	if (f === props.displayGame.id) {
-  	 		setGamesTest(true)
-  	 	} 
+  	//  let favesButton = favs.map((f, i) => {
+  	//  	if (f === props.displayGame.id) {
+  	//  		return setGamesTest(true)
+  	//  	} 
         
-  	})
+  	// })
 
 
   	 let favButton;

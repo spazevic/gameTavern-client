@@ -5,12 +5,10 @@ import twitch from '../../images/twitch.jpg'
 import mixer from '../../images/mixer.png'
 import instagram from '../../images/instagram.png'
 import twitter from '../../images/twitter.png'
-import EditButton from '../components/EditButton'
 
 
 const Profile = props => {
   let [secretMessage, setSecretMessage] = useState('')
-  let [favsId, setFavsId] = useState([])
   
 
 
@@ -27,7 +25,7 @@ const Profile = props => {
     })
     .then(response => {
       console.log('Response', response)
-      
+
       // Make sure there is a good response
       if (!response.ok) {
         setSecretMessage('Nice try!')
@@ -45,43 +43,14 @@ const Profile = props => {
       console.log(err)
       setSecretMessage('No message for you!')
     })
-    if(props.user) {
-      getGames()
-    }
-  }, [])
+  })
 
   // Make sure there is a user before trying to show their info
   if (!props.user) {
     return <Redirect to="/login" />
-  } else {
-    console.log(props.user.games)
   }
 
-  const getGames = () => {
-      console.log('get games')
-      console.log(props.user)
-      fetch(process.env.REACT_APP_SERVER_URL + 'auth/userGames/' + props.user.username, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-       .then(response => response.json()
-        .then(results => {
-          console.log(results)
-          setFavsId(results)
-
-          
-        })
-        .catch(err => {
-          console.log(err)
-        })
-      )
-      .catch(err => {
-        console.log(err)
-      })
-    }
-    getGames()
+  
 
   let steamId;
   if (props.user.tags.steamId) {
@@ -221,10 +190,7 @@ const Profile = props => {
             <p>{props.user.bio}</p>
           </div>
           <div className="userGames">
-            <div>
-              <h2>Favorite Games</h2>
-            
-            </div>
+            <div>User Games Stub</div>
           </div>
         </div>
         <div className="infoBox">
@@ -247,10 +213,10 @@ const Profile = props => {
           </div>
         </div>
       </div>
-      <div>
-        <EditButton />
-      </div>
-      
+      <h2>
+        {props.user.firstname} {props.user.lastname}
+      </h2>
+      <h2>{secretMessage}</h2>
     </div>
   )
 }
