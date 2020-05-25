@@ -13,10 +13,6 @@ const Profile = props => {
   let [favsId, setFavsId] = useState([])
   
 
-
- 
-
-
   useEffect(() => {
     // Get the token from local storage
     let token = localStorage.getItem('boilerToken')
@@ -40,6 +36,9 @@ const Profile = props => {
         console.log(result)
         setSecretMessage(result.message)
       })
+      .then(() => {
+        
+      })
     })
     .catch(err => {
       console.log(err)
@@ -53,9 +52,7 @@ const Profile = props => {
   // Make sure there is a user before trying to show their info
   if (!props.user) {
     return <Redirect to="/login" />
-  } else {
-    console.log(props.user.games)
-  }
+  } 
 
   const getGames = () => {
       console.log('get games')
@@ -68,7 +65,7 @@ const Profile = props => {
       })
        .then(response => response.json()
         .then(results => {
-          console.log(results)
+          // console.log(results)
           setFavsId(results)
 
           
@@ -81,7 +78,7 @@ const Profile = props => {
         console.log(err)
       })
     }
-    getGames()
+    
 
   let steamId;
   if (props.user.tags.steamId) {
@@ -223,7 +220,7 @@ const Profile = props => {
           <div className="userGames">
             <div>
               <h2>Favorite Games</h2>
-            
+              
             </div>
           </div>
         </div>

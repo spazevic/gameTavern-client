@@ -8,6 +8,7 @@ body {
   color: white;
   background: url('images/honeycomb2.jpg');
   background-size: 70%;
+  min-width: 840px;
 }
 
 code {
