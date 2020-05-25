@@ -76,7 +76,7 @@ const Profile = props => {
           setFavGames(results)
 
           // console.log(results)
-          setFavsId(results)
+          // setFavsId(results)
 
 
           

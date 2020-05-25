@@ -250,9 +250,6 @@ const ViewProfile = props => {
           </div>
         </div>
       </div>
-      <h2>
-        {viewed.firstname}
-      </h2>
     </div>
   )
   } else {
