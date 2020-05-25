@@ -9,7 +9,6 @@ import twitter from '../../images/twitter.png'
 
 const Profile = props => {
   let [secretMessage, setSecretMessage] = useState('')
-  let [favsId, setFavsId] = useState([])
   
 
 
@@ -44,41 +43,14 @@ const Profile = props => {
       console.log(err)
       setSecretMessage('No message for you!')
     })
-    if(props.user) {
-      getGames()
-    }
-  }, [])
+  })
 
   // Make sure there is a user before trying to show their info
   if (!props.user) {
     return <Redirect to="/login" />
   }
 
-  const getGames = () => {
-      console.log('get games')
-      console.log(props.user)
-      fetch(process.env.REACT_APP_SERVER_URL + 'auth/userGames/' + props.user.username, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-       .then(response => response.json()
-        .then(results => {
-          console.log(results)
-          setFavsId(results)
-
-          
-        })
-        .catch(err => {
-          console.log(err)
-        })
-      )
-      .catch(err => {
-        console.log(err)
-      })
-    }
-    getGames()
+  
 
   let steamId;
   if (props.user.tags.steamId) {
@@ -244,7 +216,6 @@ const Profile = props => {
       <h2>
         {props.user.firstname} {props.user.lastname}
       </h2>
-      {favsId[3]}
       <h2>{secretMessage}</h2>
     </div>
   )
