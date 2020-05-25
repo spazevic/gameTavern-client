@@ -11,6 +11,7 @@ import Profile from './pages/Profile'
 import Games from './pages/Games'
 import GameInfo from './pages/GameInfo'
 import Signup from './pages/Signup'
+import FriendsList from './pages/FriendsList'
 
 
 const Content = props => {
@@ -27,10 +28,12 @@ const Content = props => {
     setCurrentGame(game)
 
   }
-  console.log(props.game)
   return (
     <div className="container">
       <Route exact path="/" component={Home} />
+      <Route path ='/friendslist' render={() => 
+          <FriendsList user={props.user}/>
+      } />
       <Route path ='/FreeGames' render={() => 
           <FreeGames setFreeGame={updateFreeGame}/>
       } />
