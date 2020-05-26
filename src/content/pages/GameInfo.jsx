@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import FaveButton from '../components/FaveButton'
-import DeleteFaveButton from '../components/DeleteFaveButton'
+
 //import Games from './Games'
 
 
