@@ -28,7 +28,7 @@ useEffect(() => {
   		return (
         
   			<div key= {i} onClick={() => setGame(g)}>
-  			{g.name}
+  			<p>{g.name}</p>
         <Link to='/gameinfo'>Go to Game Page</Link>
   			</div>       
   		)
@@ -50,7 +50,7 @@ useEffect(() => {
 
     let genreList = genres.map((g,i) => {
       return (
-        <div className="gameDisplay" key= {i} onClick={() => {setGamesData(g.games)}}>
+        <div className="gameCard" style={{height: 'auto', padding: '5px', margin: '10px auto'}} key= {i} onClick={() => {setGamesData(g.games)}}>
         <h2>{g.name}</h2>
         </div>
        )
@@ -58,17 +58,22 @@ useEffect(() => {
 
   return (
     <div>
-      <h1>Search for a game!</h1>
+	<div className="userBanner">
+      <h1 style={{margin: '0px auto 10px auto', textAlign: 'right'}} >Search Games</h1>
       <form onSubmit={callApi} >
-      	<input className="textInput" name="name" value={name} 
+      	<input className="textInputs" name="name" style={{margin: '10px auto 10px 75%'}} value={name} 
       		onChange={e => setName(e.target.value)} />
       </form>
+	</div>
+	
+      <div className="gameReturn">
       {gamesList} 
-      <div>
       </div>
       <div>
-      <h2>Genres</h2>
-      {genreList}
+		<h2>Genres</h2>
+		<div className="genreContainer">
+			{genreList}
+		</div>
       </div>
     <div>
     </div>
