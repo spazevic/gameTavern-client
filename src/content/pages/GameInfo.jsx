@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+
 //import Games from './Games'
 
 
@@ -25,6 +26,7 @@ const GameInfo = props => {
 		fetch('https://api.rawg.io/api/games/' + props.displayGame.id)
 		.then(response => response.json())
 		.then(data => {
+			console.log(data)
 			setGameData(data)
 			setName(props.displayGame.name)
 			setPlatforms(data.platforms)
@@ -171,9 +173,27 @@ const GameInfo = props => {
   	//  	} 
         
   	// })
-
-
   
+	let favButton;
+	   
+	let description;
+	if (gameData.description) {
+	 	description = gameData.description
+	}
+
+  	 if (gamesTest === false) {
+  	 	favButton = (
+  	 	<button onClick={addFav}>
+   			Add to faves
+   		</button>
+  	 )
+  	 } else {
+  	 	favButton = (
+  	 	<button onClick={deleteFav}>
+			Delete Favorite
+   		</button>
+  	 	)
+  	 }
 
 
 	if(!props.displayGame) {
@@ -185,6 +205,7 @@ const GameInfo = props => {
 	} else {
   return (
     <div>
+
       	<div>
    		<h2>{props.displayGame.name}</h2>
    		</div>
@@ -201,6 +222,45 @@ const GameInfo = props => {
    		<a href={gameData.website} target="_blank">{gameData.website}</a>
    		<h3>Suggested Games:</h3>
    		{suggestedList}
+
+		<div className="gameBackground" style={{  
+          backgroundImage: `url(${gameData.background_image})`}}>
+			<div className="gameInfo">
+				<h1>{props.displayGame.name}</h1>
+				<div dangerouslySetInnerHTML={{__html: description}} />
+					{favButton}
+			</div>
+			<div className="infoContainer">
+				<div className="gameInfo">
+					<div className="gameInfoText">
+						<div>
+							<h3>Playtime: </h3>{props.displayGame.playtime} hr
+						</div>
+						<div>
+							<h3>Rating: </h3>{props.displayGame.metacritic}
+						</div>
+						<div>
+							<h3>Platforms:</h3>{platformsList}
+						</div>
+					</div>
+					<div className="screenshot">
+						<img src={gameData.background_image_additional} ></img>
+						<h3>Gameplay Screenshot</h3>
+					</div>
+					<div>
+						<h3> Website: </h3>
+						<a href={gameData.website} target="_blank">{gameData.website}</a>
+					</div>
+				</div>
+				<div className="gameInfo">
+					<h3>Suggested Games:</h3>
+					{suggestedList}
+				</div>
+
+			</div>
+		</div>
+   		
+
     </div>
   ) }
 }
