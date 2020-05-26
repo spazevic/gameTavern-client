@@ -13,11 +13,6 @@ const ViewProfile = props => {
   let [favGames, setFavGames] = useState([])
   console.log(props.user)
   
-
-
- 
-
-
   useEffect(() => {
     // Get the token from local storage
     getUser()
