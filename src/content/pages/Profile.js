@@ -101,7 +101,7 @@ const Profile = props => {
 
   let loopFriends = friends.map((f, i) => {
       return (
-        <div key={i} onClick={() => props.setCurrentView(f)}>{f}
+        <div key={i} onClick={() => props.setCurrentView(f)}><p>{f}</p>
         <Link to='/viewProfile'>Go to Their page</Link>
         </div>
       )
@@ -277,11 +277,17 @@ const Profile = props => {
             <div>
               <h2>Favorite Games</h2>
 
+              <div className="gamersReturn">
               {loopFavs}
+
+              </div>
             </div>
             <div>
             <h2>Friend List</h2>
+            <div className="gamersReturn">
             {loopFriends}
+
+            </div>
 
             </div>
           </div>

@@ -434,9 +434,15 @@ nav a:hover {
   margin: 0;
 }
 
-.gameReturn div {
+.gameReturn div, .gamersReturn div {
   background-color: rgba(0, 0, 0, 0.7);
   margin: 10px;
   padding: 5px;
   border-radius: 5px;
+  min-height: 40px;
+}
+
+.gamersReturn {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }

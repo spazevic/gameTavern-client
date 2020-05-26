@@ -221,8 +221,11 @@ const ViewProfile = props => {
             <p>{viewed.bio}</p>
           </div>
           <div className="userGames">
-            <div>Favorite Games</div>
+            <h2>Favorite Games</h2>
+              <div className="gameReturn">
               {loopFavs}
+
+              </div>
           </div>
         </div>
         <div className="infoBox">
