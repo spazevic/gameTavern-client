@@ -222,7 +222,7 @@ const ViewProfile = props => {
           </div>
           <div className="userGames">
             <h2>Favorite Games</h2>
-              <div className="gameReturn">
+              <div className="gamersReturn">
               {loopFavs}
 
               </div>
