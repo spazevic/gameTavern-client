@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react'
+import FaveButton from '../components/FaveButton'
+import DeleteFaveButton from '../components/DeleteFaveButton'
 //import Games from './Games'
 
 
@@ -27,6 +29,7 @@ const GameInfo = props => {
 		fetch('https://api.rawg.io/api/games/' + props.displayGame.id)
 		.then(response => response.json())
 		.then(data => {
+			console.log(data)
 			setGameData(data)
 			setName(props.displayGame.name)
 			setPlatforms(data.platforms)
@@ -125,20 +128,20 @@ const GameInfo = props => {
 
   	
 
-  	const backButton = () => {
-  		// if(gamesArray[gamesArray.length - 1] == gamesArray[gamesArray.length - 2]) {
-  		// 	gamesArray.pop()
-  		// }
-  		gamesArray.pop()
-  		console.log(gamesArray)
-  		// let count = 0;
-  		// for (let i = 0; i < gamesArray.length; i++) {
-  		// 	count++
-  		// }
-  		setGame(gamesArray[gamesArray.length-1])
+  	// const backButton = () => {
+  	// 	// if(gamesArray[gamesArray.length - 1] == gamesArray[gamesArray.length - 2]) {
+  	// 	// 	gamesArray.pop()
+  	// 	// }
+  	// 	gamesArray.pop()
+  	// 	console.log(gamesArray)
+  	// 	// let count = 0;
+  	// 	// for (let i = 0; i < gamesArray.length; i++) {
+  	// 	// 	count++
+  	// 	// }
+  	// 	setGame(gamesArray[gamesArray.length-1])
   
   		
-  	}
+  	// }
 
   	let suggestedList = suggested.map((s, i) => {
   		return (
@@ -167,8 +170,12 @@ const GameInfo = props => {
   	// })
 
 
-  	 let favButton;
-  
+	let favButton;
+	   
+	let description;
+	if (gameData.description) {
+	 	description = gameData.description
+	}
 
   	 if (gamesTest === false) {
   	 	favButton = (
@@ -179,7 +186,7 @@ const GameInfo = props => {
   	 } else {
   	 	favButton = (
   	 	<button onClick={deleteFav}>
-   			Delete from faves
+			Delete Favorite
    		</button>
   	 	)
   	 }
@@ -193,23 +200,42 @@ const GameInfo = props => {
 	} else {
   return (
     <div>
-      	<div>
-   		{props.displayGame.name}
-   		</div>
-   		{favButton}
-   		<div>
-   			Playtime:{props.displayGame.playtime}
-   		</div>
-   		<div>
-   			Rating:{props.displayGame.metacritic}
-   		</div>
-   		<div>
-   		<h3>Platforms:</h3>{platformsList}
-   		</div>
-   		<a href={gameData.website} target="_blank">{gameData.website}</a>
-   		<h3>Suggested Games:</h3>
-   		{suggestedList}
-   		<div onClick={backButton}>Back button</div>
+		<div className="gameBackground" style={{  
+          backgroundImage: `url(${gameData.background_image})`}}>
+			<div className="gameInfo">
+				<h1>{props.displayGame.name}</h1>
+				<div dangerouslySetInnerHTML={{__html: description}} />
+					{favButton}
+			</div>
+			<div className="infoContainer">
+				<div className="gameInfo">
+					<div className="gameInfoText">
+						<div>
+							<h3>Playtime: </h3>{props.displayGame.playtime} hr
+						</div>
+						<div>
+							<h3>Rating: </h3>{props.displayGame.metacritic}
+						</div>
+						<div>
+							<h3>Platforms:</h3>{platformsList}
+						</div>
+					</div>
+					<div className="screenshot">
+						<img src={gameData.background_image_additional} ></img>
+						<h3>Gameplay Screenshot</h3>
+					</div>
+					<div>
+						<h3> Website: </h3>
+						<a href={gameData.website} target="_blank">{gameData.website}</a>
+					</div>
+				</div>
+				<div className="gameInfo">
+					<h3>Suggested Games:</h3>
+					{suggestedList}
+				</div>
+
+			</div>
+		</div>
    		
     </div>
   ) }
