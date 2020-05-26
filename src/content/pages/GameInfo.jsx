@@ -11,15 +11,13 @@ const GameInfo = props => {
 	let [favs, setFavs] = useState([])
 	let [gamesTest, setGamesTest] = useState(false)
 
-	
-	
 	useEffect(() => {
 		if(props.displayGame) {
 			getGameData()
 			getSuggested()
 			getGames()
 		}
-	}, [props.displayGame, gamesArray])
+	}, [props.displayGame])
 	
 	let setGame = props.setGame
 
@@ -30,75 +28,64 @@ const GameInfo = props => {
 			setGameData(data)
 			setName(props.displayGame.name)
 			setPlatforms(data.platforms)
-			//setGamesHistory(data)
 			console.log(gamesArray)
 		})
 		.catch(err => {
 			console.log(err)
 		})
   }
-  	// const setGamesHistory = (game) => {
-  	// 	gamesArray.push(game)
-  	// 	if (gamesArray[gamesArray.length -1] === gamesArray[gamesArray.length -2]) {
-  	// 		console.log('hi')
-  	// 	}
-  	// 	console.log(gamesArray)
-  		
-  	//}
 
-  	const getSuggested = () => {
-		
-		fetch('https://api.rawg.io/api/games/' + props.displayGame.id + '/suggested')
-		.then(response => response.json())
-		.then(data => {
-			setSuggested(data.results)
-		})
-		.catch(err => {
-			console.log(err)
-		})
-  	}
+	const getSuggested = () => {	
+	fetch('https://api.rawg.io/api/games/' + props.displayGame.id + '/suggested')
+	.then(response => response.json())
+	.then(data => {
+		setSuggested(data.results)
+	})
+	.catch(err => {
+		console.log(err)
+	})
+	}
 
-  	const addFav = (game) => {
-  		setGamesTest(true)
-  		console.log(name)
-  		fetch(process.env.REACT_APP_SERVER_URL + 'auth/gamesAdd', {
-	      method: 'PUT',
-	      body: JSON.stringify({
-	      	email: props.user.email,
-	       	name: name
-	      }),
-	      headers: {
-	        'Content-Type': 'application/json'
-	      }
-	    })
-	    .then(response => {
-	    	console.log(response)
-	    })
-	    .catch(err => {
-	    	console.log(err)
-	    })
-  	}
+	const addFav = (game) => {
+	  
+		console.log(name)
+		fetch(process.env.REACT_APP_SERVER_URL + 'auth/gamesAdd', {
+      method: 'PUT',
+      body: JSON.stringify({
+      	email: props.user.email,
+       	name: name
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+    	console.log(response)
+    })
+    .catch(err => {
+    	console.log(err)
+    })
+	}
 
-  		const deleteFav = (game) => {
-  		setGamesTest(false)
-  		console.log(name)
-  		fetch(process.env.REACT_APP_SERVER_URL + 'auth/gamesRemove', {
-	      method: 'PUT',
-	      body: JSON.stringify({
-	      	email: props.user.email,
-	       	name: name
-	      }),
-	      headers: {
-	        'Content-Type': 'application/json'
-	      }
-	    })
-	    .then(response => {
-	    	console.log(response)
-	    })
-	    .catch(err => {
-	    	console.log(err)
-	    })
-  	}
+		const deleteFav = (game) => {
+		console.log(name)
+		fetch(process.env.REACT_APP_SERVER_URL + 'auth/gamesRemove', {
+      method: 'PUT',
+      body: JSON.stringify({
+      	email: props.user.email,
+       	name: name
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+    	console.log(response)
+    })
+    .catch(err => {
+    	console.log(err)
+    })
+	  }
 
   	const getGames = () => {
   		console.log('get games')
@@ -113,6 +100,7 @@ const GameInfo = props => {
 	    	.then(results => {
 	    		console.log(results)
 	    		setFavs(results)
+          
 	    	})
 	    	.catch(err => {
 	    		console.log(err)
@@ -123,27 +111,46 @@ const GameInfo = props => {
 	    })
   	}
 
+
+    let favButton;
+
+    let favesList = favs.map((f, i) => {
+     
+       if (f === props.displayGame.name) { 
+       favButton = (
+       <button onClick={deleteFav}>
+         Delete from faves
+       </button>
+       )
+     } else {
+       favButton = (
+       <button onClick={addFav}>
+         Add to faves
+       </button>
+       )
+     }
+        
+    })
+
   	
 
-  	const backButton = () => {
-  		// if(gamesArray[gamesArray.length - 1] == gamesArray[gamesArray.length - 2]) {
-  		// 	gamesArray.pop()
-  		// }
-  		gamesArray.pop()
-  		console.log(gamesArray)
-  		// let count = 0;
-  		// for (let i = 0; i < gamesArray.length; i++) {
-  		// 	count++
-  		// }
-  		setGame(gamesArray[gamesArray.length-1])
-  
-  		
-  	}
+  	// const backButton = () => {
+  	// 	// if(gamesArray[gamesArray.length - 1] == gamesArray[gamesArray.length - 2]) {
+  	// 	// 	gamesArray.pop()
+  	// 	// }
+  	// 	gamesArray.pop()
+  	// 	console.log(gamesArray)
+  	// 	// let count = 0;
+  	// 	// for (let i = 0; i < gamesArray.length; i++) {
+  	// 	// 	count++
+  	// 	// }
+  	// 	setGame(gamesArray[gamesArray.length-1])		
+  	// }
 
   	let suggestedList = suggested.map((s, i) => {
   		return (
   			<div key= {i} onClick={() => {
-  				gamesArray.push(gameData)
+  				// gamesArray.push(gameData)
   				setGame(s)}}>
         	{s.name}
   			</div>
@@ -154,8 +161,7 @@ const GameInfo = props => {
   		return (
   			<div key= {i} >
         	{p.platform.name}
-  			</div>
-        
+  			</div>  
   		)
   	})
 
@@ -167,22 +173,8 @@ const GameInfo = props => {
   	// })
 
 
-  	 let favButton;
   
 
-  	 if (gamesTest === false) {
-  	 	favButton = (
-  	 	<button onClick={addFav}>
-   			Add to faves
-   		</button>
-  	 )
-  	 } else {
-  	 	favButton = (
-  	 	<button onClick={deleteFav}>
-   			Delete from faves
-   		</button>
-  	 	)
-  	 }
 
 	if(!props.displayGame) {
 		return (
@@ -194,23 +186,21 @@ const GameInfo = props => {
   return (
     <div>
       	<div>
-   		{props.displayGame.name}
+   		<h2>{props.displayGame.name}</h2>
    		</div>
-   		{favButton}
    		<div>
    			Playtime:{props.displayGame.playtime}
    		</div>
    		<div>
    			Rating:{props.displayGame.metacritic}
    		</div>
+       {favButton}
    		<div>
    		<h3>Platforms:</h3>{platformsList}
    		</div>
    		<a href={gameData.website} target="_blank">{gameData.website}</a>
    		<h3>Suggested Games:</h3>
    		{suggestedList}
-   		<div onClick={backButton}>Back button</div>
-   		
     </div>
   ) }
 }

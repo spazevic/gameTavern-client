@@ -90,23 +90,6 @@ const Profile = props => {
       })
     }
 
-   
-    // const getGameData = (game) => {
-     
-    // fetch('https://api.rawg.io/api/games/' + game)
-    // .then(response => response.json())
-    // .then(data => {
-      
-    //    console.log(data)
-    //    favGames.push(data)
-    //    console.log(favGames)
-       
-    // })
-    // .catch(err => {
-    //   console.log(err)
-    // })
-  
-    // }
   let loopFavs = favGames.map((f, i) => {
     console.log(f)
 
@@ -149,21 +132,6 @@ const Profile = props => {
       console.log(err)
     })
   }
-
-// const setGamesList = () => {
-
-//     console.log(favGames)
-//     for (let i =0; i< 4; i++) {
-//       console.log('hi')
-//     }
-  
-// }
-
-// let friendList = friends.map((f,i) => {
-//   console.log('hi')
-// })
-
-
 
 
 

@@ -52,7 +52,7 @@ const ViewUsers = props => {
   	let userList = users.map((u, i) => {
   		if(u.username) {
   		return (
-  			<div key={i} onClick={() => {
+  			<div className='gameDisplay'key={i} onClick={() => {
   				addFriend(u)}}>{u.firstname}(Click to add)</div>
   		)
   		}

@@ -40,9 +40,10 @@ const FriendsList = props => {
 
   	let friendList = friends.map((f, i) => {
   		return (
-  			<div key={i} onClick={() => props.setCurrentView(f)}>{f}
-  			<Link to='/viewProfile'>Go to Their page</Link>
+  			<Link to='/viewProfile'><div className='gameDisplay' key={i} onClick={() => props.setCurrentView(f)}>{f}
+  			
   			</div>
+  			</Link>
   		)
   	})
 

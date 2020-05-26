@@ -184,6 +184,20 @@ nav a:hover {
   border-radius: 0 0 5px 5px;
 }
 
+.gameDisplay {
+  background-color: #282c34;
+  width: 200px;
+  
+  margin: 10px auto;
+  min-height: 60px;
+  height: 80px;
+  padding: 5px 30px;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
+}
+
+
+
 .profileInfo h2, .profileInfo p{
   margin: 5px;
 }
